@@ -1,0 +1,62 @@
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: realtime-docs-postgres
+
+    restart: no
+
+    env_file:
+      - .env
+
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+    networks:
+      - realtime-network
+
+  redis:
+    image: redis:alpine
+    container_name: realtime-docs-redis
+
+    restart: no
+
+    ports:
+      - "6379:6379"
+
+    command: redis-server --appendonly yes
+
+    volumes:
+      - redis_data:/data
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+    networks:
+      - realtime-network
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  realtime-network:
+    driver: bridge

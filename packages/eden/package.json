@@ -1,0 +1,19 @@
+{
+  "name": "@repo/eden",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "server": "workspace:*",
+    "@elysia/eden": "^1.4.10"
+  }
+}
