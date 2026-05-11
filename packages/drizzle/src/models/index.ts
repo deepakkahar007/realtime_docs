@@ -1,14 +1,4 @@
-import { pgTable, varchar, text } from "drizzle-orm/pg-core";
-import { id, isActive, createdAt, updatedAt } from "./modelsHelper";
+import { user, account, session, verification } from "./AuthTable";
+import { documentTable } from "./DocumentTable";
 
-export const UserTable = pgTable("user", {
-  id,
-
-  name: varchar("name").notNull(),
-  email: varchar("email").notNull(),
-  password: varchar("password").notNull(),
-  isActive,
-
-  createdAt,
-  updatedAt,
-});
+export { user, account, session, verification, documentTable };

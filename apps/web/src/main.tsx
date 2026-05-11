@@ -5,9 +5,9 @@ import { TanstackRouter } from "@/integrations/tanstack-router/TanstackRouter";
 import { ReactQuery } from "@/integrations/react-query/ReactQuery";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <ReactQuery>
-      <TanstackRouter />
-    </ReactQuery>
-  </StrictMode>,
+	<StrictMode>
+		<ReactQuery>
+			<TanstackRouter />
+		</ReactQuery>
+	</StrictMode>,
 );

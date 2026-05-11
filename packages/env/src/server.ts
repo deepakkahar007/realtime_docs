@@ -19,6 +19,8 @@ export const serverEnv = createEnv({
 		DB_HOST: z.string(),
 		DB_PORT: z.string(),
 		REDIS_URL: z.string(),
+		GOOGLE_CLIENT_ID: z.string(),
+		GOOGLE_CLIENT_SECRET: z.string(),
 	},
 	createFinalSchema: (env) =>
 		z.object(env).transform((val) => {
