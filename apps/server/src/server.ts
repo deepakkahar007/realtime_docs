@@ -31,9 +31,7 @@ const app = new Elysia()
 	)
 	.all("/api/auth/*", betterAuthView)
 	.get("/", { msg: "hello elysia" })
-	.listen(serverEnv.SERVER_PORT, ({ hostname, port }) => {
-		console.log(`server is running on ${hostname}:${port}`);
-	});
+	.listen(serverEnv.SERVER_PORT);
 
 export type App = typeof app;
 

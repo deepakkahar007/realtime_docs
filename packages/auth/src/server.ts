@@ -1,17 +1,28 @@
 import { betterAuth } from "better-auth";
+import { organization } from "better-auth/plugins";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "@repo/drizzle";
+import { db, drizzleSchema } from "@repo/drizzle";
 import { serverEnv } from "@repo/env";
 
 const serverAuth = betterAuth({
-	baseURL: "http://localhost:3000",
+	baseURL: "http://localhost:5173",
 	trustedOrigins: ["http://localhost:5173", "http://127.0.0.1:5173"],
 
 	database: drizzleAdapter(db, {
 		provider: "pg",
+		schema: {
+			...drizzleSchema,
+		},
 	}),
 	emailAndPassword: {
 		enabled: true,
+	},
+	session: {
+		cookieCache: {
+			enabled: true,
+			maxAge: 60 * 60 * 24 * 7, // 7 days
+			strategy: "jwt",
+		},
 	},
 	socialProviders: {
 		google: {
@@ -19,6 +30,7 @@ const serverAuth = betterAuth({
 			clientSecret: serverEnv.GOOGLE_CLIENT_SECRET,
 		},
 	},
+	plugins: [organization()],
 });
 
 export default serverAuth;

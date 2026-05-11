@@ -6,4 +6,9 @@ import { serverEnv } from "@repo/env";
 
 const client = postgres(serverEnv.DATABASE_URL);
 
-export const db = drizzle({ client, schema, relations });
+export const drizzleSchema = {
+	...schema,
+	relations,
+};
+
+export const db = drizzle({ client, relations });
