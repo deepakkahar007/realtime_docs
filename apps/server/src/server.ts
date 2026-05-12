@@ -1,19 +1,9 @@
 import { cors } from "@elysia/cors";
 import { openapi } from "@elysia/openapi";
-import { Elysia, type Context } from "elysia";
-import { z } from "zod";
-import auth from "@repo/auth/server";
 import { serverEnv } from "@repo/env";
-
-const betterAuthView = (context: Context) => {
-	const BETTER_AUTH_ACCEPT_METHODS = ["POST", "GET"];
-	// validate request method
-	if (BETTER_AUTH_ACCEPT_METHODS.includes(context.request.method)) {
-		return auth.handler(context.request);
-	} else {
-		context.status(405);
-	}
-};
+import { Elysia } from "elysia";
+import { z } from "zod";
+import { betterAuthView } from "../lib/auth";
 
 const app = new Elysia()
 	.use(
