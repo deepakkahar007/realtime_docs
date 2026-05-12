@@ -1,55 +1,27 @@
-import { createFileRoute } from "@tanstack/react-router";
-import authClient from "@repo/auth/client";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
+import { getAuthSession } from "@/helpers/authHelper";
 
 export const Route = createFileRoute("/")({
 	component: Index,
+	loader: getAuthSession,
 });
 
 function Index() {
-	const handleSignIn = async () => {
-		const user = await authClient.signIn.email({
-			email: "test@gg.com",
-			password: "testtest",
-		});
-		console.log(user);
-	};
-
-	const handleGoogleSignIn = async () => {
-		const user = await authClient.signIn.social({
-			provider: "google",
-		});
-		console.log(user);
-	};
-
-	const handleGetSession = async () => {
-		const session = await authClient.getSession();
-		console.log(session);
-	};
-
-	const handleSignOut = async () => {
-		const result = await authClient.signOut();
-		console.log(result);
-	};
-
-	const handleSignUp = async () => {
-		const user = await authClient.signUp.email({
-			name: "Test User",
-			email: "test@gg.com",
-			password: "testtest",
-		});
-		console.log(user);
-	};
+	const session = Route.useLoaderData();
 
 	return (
 		<div className="p-2">
+			{session ? (
+				<Button asChild>
+					<Link to="/dashboard">Dashboard</Link>
+				</Button>
+			) : (
+				<Button asChild>
+					<Link to="/sign-in">Sign In</Link>
+				</Button>
+			)}
 			<h3>Welcome Home!</h3>
-
-			<Button onClick={handleSignIn}>Sign in with email</Button>
-			<Button onClick={handleSignUp}>Sign up with email</Button>
-			<Button onClick={handleGoogleSignIn}>Sign in with Google</Button>
-			<Button onClick={handleGetSession}>get session</Button>
-			<Button onClick={handleSignOut}>Sign Out</Button>
 		</div>
 	);
 }
