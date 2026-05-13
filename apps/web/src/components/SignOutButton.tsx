@@ -8,7 +8,7 @@ const SignOutButton = () => {
 
 	const { mutateAsync, isPending } = useMutation({
 		mutationKey: ["sign-out-user"],
-		mutationFn: async () => await signOutUser(),
+		mutationFn: signOutUser,
 		onSuccess: async (res) => {
 			if (res.data?.success) {
 				await navigate({ to: "/sign-in" });
