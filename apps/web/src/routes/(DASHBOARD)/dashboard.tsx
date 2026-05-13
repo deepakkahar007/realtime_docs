@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import CreateDocumentDialog from "@/components/CreateDocumentDialog";
 import SignOutButton from "@/components/SignOutButton";
 import { getAuthSession } from "@/helpers/authHelper";
 
@@ -16,6 +17,8 @@ function RouteComponent() {
 		<div>
 			{!session?.data || <SignOutButton />}
 			<h1>document list</h1>
+
+			<CreateDocumentDialog />
 
 			{document.map((doc) => (
 				<Link key={doc} to="/document/$docId" params={{ docId: doc }}>

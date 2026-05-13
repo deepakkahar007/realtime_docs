@@ -1,34 +1,33 @@
 {
-  "name": "server",
-  "module": "src/server.ts",
-  "type": "module",
-  "private": true,
-  "exports": {
-    ".": "./src/server.ts"
-  },
-  "scripts": {
-    "dev": "bun --watch src/server.ts",
-    "lint": "bunx --bun @biomejs/biome check --write",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:push": "drizzle-kit push",
-    "db:studio": "drizzle-kit studio"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "2.4.14",
-    "@types/bun": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
-  },
-  "dependencies": {
-    "@repo/drizzle": "workspace:*",
-    "@repo/schema": "workspace:*",
-    "@repo/env": "workspace:*",
-    "@repo/auth": "workspace:*",
-    "@elysia/cors": "^1.4.2",
-    "@elysia/openapi": "^1.4.15",
-    "elysia": "^1.4.28",
-    "zod": "^4.4.3"
-  }
+	"name": "server",
+	"module": "src/server.ts",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": "./src/server.ts"
+	},
+	"scripts": {
+		"dev": "bun --watch src/server.ts",
+		"lint": "bunx --bun @biomejs/biome check --write",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:push": "drizzle-kit push",
+		"db:studio": "drizzle-kit studio"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.14",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5"
+	},
+	"dependencies": {
+		"@repo/drizzle": "workspace:*",
+		"@repo/env": "workspace:*",
+		"@repo/auth": "workspace:*",
+		"@elysia/cors": "^1.4.2",
+		"@elysia/openapi": "^1.4.15",
+		"elysia": "^1.4.28",
+		"zod": "^4.4.3"
+	}
 }
