@@ -22,12 +22,13 @@
 		"typescript": "^5"
 	},
 	"dependencies": {
-		"@repo/drizzle": "workspace:*",
-		"@repo/env": "workspace:*",
-		"@repo/auth": "workspace:*",
 		"@elysia/cors": "^1.4.2",
 		"@elysia/openapi": "^1.4.15",
+		"@repo/auth": "workspace:*",
+		"@repo/drizzle": "workspace:*",
+		"@repo/env": "workspace:*",
 		"elysia": "^1.4.28",
+		"ioredis": "^5.10.1",
 		"zod": "^4.4.3"
 	}
 }

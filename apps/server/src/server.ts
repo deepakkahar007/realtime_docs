@@ -4,6 +4,7 @@ import { serverEnv } from "@repo/env";
 import { Elysia } from "elysia";
 import { z } from "zod";
 import { betterAuthView } from "../lib/auth";
+import { websocket } from "./lib/websocket";
 
 const app = new Elysia()
 	.use(
@@ -19,9 +20,10 @@ const app = new Elysia()
 			},
 		}),
 	)
+	.use(websocket)
 	.all("/api/auth/*", betterAuthView)
 	.get("/", { msg: "hello elysia" })
-	.listen(serverEnv.SERVER_PORT);
+	
 
 export type App = typeof app;
 
